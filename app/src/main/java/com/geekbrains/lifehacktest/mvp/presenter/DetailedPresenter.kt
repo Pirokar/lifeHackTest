@@ -19,6 +19,7 @@ class DetailedPresenter(private val idProvider: IIdProvider,
         viewState.setupFindUsBtn()
         viewState.setupPhoneView()
         viewState.setupWWWView()
+        viewState.setupToolbar()
 
         createModelsRepo()
         loadDetails()
@@ -53,6 +54,10 @@ class DetailedPresenter(private val idProvider: IIdProvider,
                 viewState.showErrorLoading()
                 viewState.hideLoaders()
             })
+    }
+
+    fun onBackClicked() {
+        viewState.goBack()
     }
 
     fun onFindUsBtnClicked() {

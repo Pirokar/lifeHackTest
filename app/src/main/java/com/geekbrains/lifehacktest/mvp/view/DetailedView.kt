@@ -10,6 +10,7 @@ interface DetailedView: MvpView {
     fun setImage(url: String)
     fun setName(text: String)
     fun setDescription(text: String)
+    fun setupToolbar()
     fun setupFindUsBtn()
     fun hideFindUsBtn()
     fun showPositionOnMap(latitude: Float, longitude: Float)
@@ -24,4 +25,5 @@ interface DetailedView: MvpView {
     fun showErrorLoading()
     fun hideErrorLoading()
     fun hideLoaders()
+    fun goBack()
 }

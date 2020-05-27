@@ -3,6 +3,7 @@ package com.geekbrains.lifehacktest.ui.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import com.geekbrains.lifehacktest.R
 import com.geekbrains.lifehacktest.mvp.model.IIdProvider
@@ -24,14 +25,25 @@ class DetailedScreenActivity: MvpAppCompatActivity(), DetailedView, IIdProvider 
     fun providePresenter() = DetailedPresenter(this, AndroidSchedulers.mainThread())
 
     private val imageLoader = GlideImageLoader()
-    
+
+    //region activity methods
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == android.R.id.home) {
+            presenter.onBackClicked()
+        }
+
+        return true
+    }
+    //endregion
+
     override fun getId(): String? = intent.getStringExtra(Constants.itemIdFromMainScreenKey)
 
+    //region view methods
     override fun showContentView() {
         detailedContentView.visibility = View.VISIBLE
     }
@@ -46,6 +58,10 @@ class DetailedScreenActivity: MvpAppCompatActivity(), DetailedView, IIdProvider 
 
     override fun setDescription(text: String) {
         descriptionTextView.text = text
+    }
+
+    override fun setupToolbar() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun setupFindUsBtn() {
@@ -114,4 +130,9 @@ class DetailedScreenActivity: MvpAppCompatActivity(), DetailedView, IIdProvider 
     override fun hideLoaders() {
         detailedProgressBar.visibility = View.GONE
     }
+
+    override fun goBack() {
+        finish()
+    }
+    //endregion
 }

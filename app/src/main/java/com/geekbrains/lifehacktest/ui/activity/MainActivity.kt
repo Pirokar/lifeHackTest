@@ -24,11 +24,14 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     private var rvAdapter: ItemsListRVAdapter? = null
 
+    //region activity methods
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+    //endregion
 
+    //region view methods
     override fun initList() {
         val layoutManager = LinearLayoutManager(baseContext)
         rvAdapter = ItemsListRVAdapter(presenter.itemsListPresenter)
@@ -66,4 +69,5 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         }
         startActivity(intent)
     }
+    //endregion
 }
