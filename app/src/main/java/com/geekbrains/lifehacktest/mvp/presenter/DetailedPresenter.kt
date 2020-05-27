@@ -51,6 +51,7 @@ class DetailedPresenter(private val idProvider: IIdProvider,
             },{
                 Timber.e(it)
                 viewState.showErrorLoading()
+                viewState.hideLoaders()
             })
     }
 
