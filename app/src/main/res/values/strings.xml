@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LifeHackTest</string>
+    <string name="no_items">No items</string>
+    <string name="phone">Phone:</string>
+    <string name="find_us">find us</string>
+    <string name="web_site">Web site:</string>
+    <string name="error_page_loading">Error when loading this page. Please try again later</string>
+</resources>

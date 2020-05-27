@@ -1,0 +1,117 @@
+package com.geekbrains.lifehacktest.ui.activity
+
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.view.View
+import com.geekbrains.lifehacktest.R
+import com.geekbrains.lifehacktest.mvp.model.IIdProvider
+import com.geekbrains.lifehacktest.mvp.presenter.DetailedPresenter
+import com.geekbrains.lifehacktest.mvp.utils.Constants
+import com.geekbrains.lifehacktest.mvp.view.DetailedView
+import com.geekbrains.lifehacktest.ui.image.GlideImageLoader
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import kotlinx.android.synthetic.main.activity_detailed.*
+import moxy.MvpAppCompatActivity
+import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
+
+class DetailedScreenActivity: MvpAppCompatActivity(), DetailedView, IIdProvider {
+    @InjectPresenter
+    lateinit var presenter: DetailedPresenter
+
+    @ProvidePresenter
+    fun providePresenter() = DetailedPresenter(this, AndroidSchedulers.mainThread())
+
+    private val imageLoader = GlideImageLoader()
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_detailed)
+    }
+
+    override fun getId(): String? = intent.getStringExtra(Constants.itemIdFromMainScreenKey)
+
+    override fun showContentView() {
+        detailedContentView.visibility = View.VISIBLE
+    }
+
+    override fun setImage(url: String) {
+        imageLoader.loadInto(url, detailedImageView)
+    }
+
+    override fun setName(text: String) {
+        detailedNameTextView.text = text
+    }
+
+    override fun setDescription(text: String) {
+        descriptionTextView.text = text
+    }
+
+    override fun setupFindUsBtn() {
+        findUsBtn.setOnClickListener {
+            presenter.onFindUsBtnClicked()
+        }
+    }
+
+    override fun hideFindUsBtn() {
+        findUsBtn.visibility = View.INVISIBLE
+    }
+
+    override fun showPositionOnMap(latitude: Float, longitude: Float) {
+        val geoUri = Uri.parse("geo:$latitude,$longitude")
+        val intent = Intent(Intent.ACTION_VIEW, geoUri)
+        startActivity(intent)
+    }
+
+    override fun setupWWWView() {
+        wwwLayout.setOnClickListener {
+            presenter.onWWWClicked()
+        }
+    }
+
+    override fun setWWW(urlText: String) {
+        wwwTextView.text = urlText
+    }
+
+    override fun hideWWW() {
+        wwwLayout.visibility = View.GONE
+    }
+
+    override fun showUrlInBrowser(urlText: String) {
+        val url = if(!urlText.startsWith("http")) "http://$urlText" else urlText
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
+    }
+
+    override fun setupPhoneView() {
+        phoneLayout.setOnClickListener {
+            presenter.onPhoneClicked()
+        }
+    }
+
+    override fun setPhoneNmb(text: String) {
+        phoneTextView.text = text
+    }
+
+    override fun openPhoneDialer(phoneNmb: String) {
+        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNmb"))
+        startActivity(intent)
+    }
+
+    override fun hidePhoneNmb() {
+        phoneLayout.visibility = View.GONE
+    }
+
+    override fun showErrorLoading() {
+        errorLoadingTextView.visibility = View.VISIBLE
+    }
+
+    override fun hideErrorLoading() {
+        errorLoadingTextView.visibility = View.GONE
+    }
+
+    override fun hideLoaders() {
+        detailedProgressBar.visibility = View.GONE
+    }
+}

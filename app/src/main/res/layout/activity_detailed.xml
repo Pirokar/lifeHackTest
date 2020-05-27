@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/detailedContentView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:id="@+id/detailedImageView"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="@dimen/sideStandardMargins"
+                    android:layout_marginTop="24dp"
+                    tools:srcCompat="@drawable/no_image_placeholder" />
+
+                <TextView
+                    android:id="@+id/detailedNameTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="@dimen/sideStandardMargins"
+                    android:layout_toEndOf="@id/detailedImageView"
+                    android:layout_alignTop="@id/detailedImageView"
+                    tools:text="The James Shark Pub"
+                    android:gravity="center_horizontal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/findUsBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/detailedNameTextView"
+                    android:layout_alignStart="@id/detailedNameTextView"
+                    android:layout_alignEnd="@id/detailedNameTextView"
+                    android:text="@string/find_us"/>
+
+                <LinearLayout
+                    android:id="@+id/phoneLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/sideStandardMargins"
+                    android:layout_marginEnd="@dimen/sideStandardMargins"
+                    android:layout_below="@id/detailedImageView"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/linkLabel"
+                        android:text="@string/phone"/>
+
+                    <TextView
+                        android:id="@+id/phoneTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        style="@style/linkLabel"
+                        android:layout_marginStart="12dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/wwwLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/phoneLayout"
+                    android:layout_marginStart="@dimen/sideStandardMargins"
+                    android:layout_marginEnd="@dimen/sideStandardMargins"
+                    android:layout_marginTop="8dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/linkLabel"
+                        android:text="@string/web_site"/>
+
+                    <TextView
+                        android:id="@+id/wwwTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/linkLabel"
+                        android:layout_marginStart="12dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/descriptionTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/wwwLayout"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="@dimen/sideStandardMargins"
+                    android:layout_marginEnd="@dimen/sideStandardMargins"
+                    style="@style/usualLabel"
+                    tools:text="TextView" />
+            </RelativeLayout>
+
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/detailedProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateOnly="true"/>
+
+    <TextView
+        android:id="@+id/errorLoadingTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/error_page_loading"
+        android:gravity="center_horizontal"
+        style="@style/usualLabel"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>
+
