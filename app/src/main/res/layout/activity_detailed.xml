@@ -31,7 +31,7 @@
                     android:layout_toEndOf="@id/detailedImageView"
                     android:layout_alignTop="@id/detailedImageView"
                     tools:text="The James Shark Pub"
-                    android:gravity="center_horizontal"
+                    android:gravity="center_horizontal|bottom"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
