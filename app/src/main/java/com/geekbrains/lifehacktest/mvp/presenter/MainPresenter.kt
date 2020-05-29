@@ -1,5 +1,6 @@
 package com.geekbrains.lifehacktest.mvp.presenter
 
+import com.geekbrains.lifehacktest.Constants
 import com.geekbrains.lifehacktest.mvp.model.api.ApiHolder
 import com.geekbrains.lifehacktest.mvp.model.entity.ShortItemModel
 import com.geekbrains.lifehacktest.mvp.model.repo.ModelsRepo
@@ -23,7 +24,7 @@ class MainPresenter(private val mainThreadScheduler: Scheduler): MvpPresenter<Ma
         override fun bindView(view: ShortItemView) {
             val item = items[view.pos]
             view.setTitle(item.name)
-            view.setImage(item.img)
+            view.setImage("${Constants.imagesPrefix}${item.img}")
         }
     }
 

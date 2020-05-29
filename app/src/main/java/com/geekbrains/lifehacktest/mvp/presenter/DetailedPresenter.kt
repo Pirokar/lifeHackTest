@@ -1,5 +1,6 @@
 package com.geekbrains.lifehacktest.mvp.presenter
 
+import com.geekbrains.lifehacktest.Constants
 import com.geekbrains.lifehacktest.mvp.model.DetailedModel
 import com.geekbrains.lifehacktest.mvp.model.IIdProvider
 import com.geekbrains.lifehacktest.mvp.model.api.ApiHolder
@@ -77,7 +78,7 @@ class DetailedPresenter(private val idProvider: IIdProvider,
     }
 
     private fun setImage() {
-        viewState.setImage(model.detailedModel.img)
+        viewState.setImage("${Constants.imagesPrefix}${model.detailedModel.img}")
     }
 
     private fun setDescription() {
