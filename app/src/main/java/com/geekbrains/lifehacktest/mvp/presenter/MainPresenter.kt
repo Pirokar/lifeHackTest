@@ -15,7 +15,7 @@ class MainPresenter(private val mainThreadScheduler: Scheduler): MvpPresenter<Ma
     val itemsListPresenter = ItemsListPresenter()
 
     class ItemsListPresenter : IItemsListPresenter {
-        var items = Array(0) {ShortItemModel()}
+        var items = Array(0) { ShortItemModel() }
         override var itemClickListener: ((ShortItemView) -> Unit)? = null
 
         override fun getCount() = items.size
