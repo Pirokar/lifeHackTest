@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.geekbrains.lifehacktest.Constants
 import com.geekbrains.lifehacktest.R
 import com.geekbrains.lifehacktest.mvp.presenter.list.IItemsListPresenter
 import com.geekbrains.lifehacktest.mvp.view.list.ShortItemView
