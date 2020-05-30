@@ -6,7 +6,7 @@ import com.geekbrains.lifehacktest.mvp.model.entity.database.db_impl.Database
 import com.geekbrains.lifehacktest.mvp.model.entity.database.entities_cache.IShortItemModelCache
 import com.geekbrains.lifehacktest.mvp.model.entity.database.room.RoomShortItemModel
 
-class RoomShortItemCache: IShortItemModelCache {
+object RoomShortItemCache: IShortItemModelCache {
     override fun saveShortItemToDb(shortItem: ShortItemModel, database: Database) {
         val roomShortItemModel = database.shortItemDao().getById(shortItem.id)?.apply {
             id = shortItem.id

@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkRequest
 import com.geekbrains.lifehacktest.mvp.model.network.NetworkStatus
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 
 class AndroidNetworkStatus(context: Context): NetworkStatus {
@@ -31,5 +32,7 @@ class AndroidNetworkStatus(context: Context): NetworkStatus {
 
     override fun isOnline() = statusSubject
 
-    override fun isOnlineSingle() = statusSubject.first(false)
+    override fun isOnlineSingle(): Single<Boolean> {
+        return statusSubject.first(false)
+    }
 }

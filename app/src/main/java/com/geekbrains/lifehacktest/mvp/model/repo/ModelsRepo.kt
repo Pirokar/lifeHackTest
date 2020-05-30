@@ -29,6 +29,10 @@ class ModelsRepo(private val api: IDataSource) {
         }
     }.subscribeOn(Schedulers.io())
 
+    /*fun getDetaileddItem(id: String): @NonNull Single<DetailedItemModel> {
+
+    }*/
+
     fun getDetailedItem(id: String): @NonNull Single<DetailedItemModel>
             = App.getNetworkStatusImpl().isOnlineSingle().flatMap { isOnline ->
         if(isOnline) {

@@ -5,7 +5,7 @@ import com.geekbrains.lifehacktest.mvp.model.entity.database.db_impl.Database
 import com.geekbrains.lifehacktest.mvp.model.entity.database.entities_cache.IDetailedItemModelCache
 import com.geekbrains.lifehacktest.mvp.model.entity.database.room.RoomDetailedItemModel
 
-class RoomDetailedItemCache: IDetailedItemModelCache {
+object RoomDetailedItemCache: IDetailedItemModelCache {
     override fun saveDetailedItemToDb(detailedItem: DetailedItemModel, database: Database) {
         val itemToInsert = RoomDetailedItemModel(
             detailedItem.id,

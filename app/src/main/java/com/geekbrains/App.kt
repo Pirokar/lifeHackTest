@@ -19,13 +19,14 @@ class App: Application() {
 
     companion object {
         lateinit var context: Context
+        private var networkStatusInstance: NetworkStatus? = null
 
         fun getShortItemCacheImpl(): IShortItemModelCache {
-            return RoomShortItemCache()
+            return RoomShortItemCache
         }
 
         fun getDetailedItemCacheImpl(): IDetailedItemModelCache {
-            return RoomDetailedItemCache()
+            return RoomDetailedItemCache
         }
 
         fun getDBImpl(): Database {
@@ -33,7 +34,11 @@ class App: Application() {
         }
 
         fun getNetworkStatusImpl(): NetworkStatus {
-            return AndroidNetworkStatus(context)
+            if(networkStatusInstance == null) {
+                networkStatusInstance = AndroidNetworkStatus(context)
+            }
+
+            return networkStatusInstance!!
         }
     }
 
