@@ -1,4 +1,4 @@
-package com.geekbrains.lifehacktest.ui.activity
+package com.geekbrains.lifehacktest.framework.ui.activity
 
 import android.content.Intent
 import android.net.Uri
@@ -10,7 +10,7 @@ import com.geekbrains.lifehacktest.mvp.model.IIdProvider
 import com.geekbrains.lifehacktest.mvp.presenter.DetailedPresenter
 import com.geekbrains.lifehacktest.mvp.utils.Constants
 import com.geekbrains.lifehacktest.mvp.view.DetailedView
-import com.geekbrains.lifehacktest.ui.image.GlideImageLoader
+import com.geekbrains.lifehacktest.framework.ui.image.GlideImageLoader
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_detailed.*
 import moxy.MvpAppCompatActivity

@@ -1,14 +1,13 @@
-package com.geekbrains.lifehacktest.ui.adapter
+package com.geekbrains.lifehacktest.framework.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.geekbrains.lifehacktest.Constants
 import com.geekbrains.lifehacktest.R
 import com.geekbrains.lifehacktest.mvp.presenter.list.IItemsListPresenter
 import com.geekbrains.lifehacktest.mvp.view.list.ShortItemView
-import com.geekbrains.lifehacktest.ui.image.GlideImageLoader
+import com.geekbrains.lifehacktest.framework.ui.image.GlideImageLoader
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_list.view.*
 

@@ -3,6 +3,10 @@ package com.geekbrains.lifehacktest.mvp.presenter
 import com.geekbrains.lifehacktest.Constants
 import com.geekbrains.lifehacktest.mvp.model.api.ApiHolder
 import com.geekbrains.lifehacktest.mvp.model.entity.ShortItemModel
+import com.geekbrains.lifehacktest.mvp.model.entity.database.db_impl.Database
+import com.geekbrains.lifehacktest.mvp.model.entity.database.entities_cache.IDetailedItemModelCache
+import com.geekbrains.lifehacktest.mvp.model.entity.database.entities_cache.IShortItemModelCache
+import com.geekbrains.lifehacktest.mvp.model.network.NetworkStatus
 import com.geekbrains.lifehacktest.mvp.model.repo.ModelsRepo
 import com.geekbrains.lifehacktest.mvp.presenter.list.IItemsListPresenter
 import com.geekbrains.lifehacktest.mvp.view.MainView
@@ -11,7 +15,8 @@ import io.reactivex.rxjava3.core.Scheduler
 import moxy.MvpPresenter
 import timber.log.Timber
 
-class MainPresenter(private val mainThreadScheduler: Scheduler): MvpPresenter<MainView>() {
+class MainPresenter(private val mainThreadScheduler: Scheduler) : MvpPresenter<MainView>() {
+
     private lateinit var modelsRepo: ModelsRepo
     val itemsListPresenter = ItemsListPresenter()
 

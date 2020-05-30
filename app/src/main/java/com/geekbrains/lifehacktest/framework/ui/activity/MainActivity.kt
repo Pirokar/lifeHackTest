@@ -1,14 +1,19 @@
-package com.geekbrains.lifehacktest.ui.activity
+package com.geekbrains.lifehacktest.framework.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.geekbrains.lifehacktest.R
+import com.geekbrains.lifehacktest.framework.network.AndroidNetworkStatus
 import com.geekbrains.lifehacktest.mvp.presenter.MainPresenter
 import com.geekbrains.lifehacktest.mvp.utils.Constants
 import com.geekbrains.lifehacktest.mvp.view.MainView
-import com.geekbrains.lifehacktest.ui.adapter.ItemsListRVAdapter
+import com.geekbrains.lifehacktest.framework.ui.adapter.ItemsListRVAdapter
+import com.geekbrains.lifehacktest.mvp.model.entity.database.db_impl.Database
+import com.geekbrains.lifehacktest.mvp.model.entity.database.room.RoomShortItemModel
+import com.geekbrains.lifehacktest.mvp.model.entity.database.room.entities_cache_impl.RoomDetailedItemCache
+import com.geekbrains.lifehacktest.mvp.model.entity.database.room.entities_cache_impl.RoomShortItemCache
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import moxy.MvpAppCompatActivity

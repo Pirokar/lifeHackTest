@@ -17,8 +17,8 @@ import java.lang.RuntimeException
     version = 1
 )
 abstract class Database: RoomDatabase() {
-    abstract var shortItemDao: ShortItemDao
-    abstract var detailedItemDao: DetailedItemDao
+    abstract fun shortItemDao(): ShortItemDao
+    abstract fun detailedItemDao(): DetailedItemDao
 
     companion object {
         private const val DB_NAME = "database.db"
@@ -32,7 +32,8 @@ abstract class Database: RoomDatabase() {
 
         fun create(context: Context) {
             instance ?: let {
-                instance = Room.databaseBuilder(context, Database::class.java, DB_NAME).build()
+                instance = Room.databaseBuilder(context, Database::class.java, DB_NAME)
+                    .build()
             }
         }
 

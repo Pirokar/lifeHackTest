@@ -34,22 +34,19 @@ class DetailedPresenter(private val idProvider: IIdProvider,
         val id = idProvider.getId() ?: ""
         modelsRepo.getDetailedItem(id)
             .observeOn(mainThreadScheduler)
-            .subscribe({items ->
-                if(items.isNotEmpty()) {
-                    model.detailedModel = items[0]
-                    viewState.hideErrorLoading()
-                    viewState.hideLoaders()
-                    viewState.showContentView()
+            .subscribe({item ->
+                model.detailedModel = item
+                viewState.hideErrorLoading()
+                viewState.hideLoaders()
+                viewState.showContentView()
 
-                    setName()
-                    setImage()
-                    setDescription()
-                    setFindUspBtn()
-                    setWWW()
-                    setPhone()
-                } else {
-                    viewState.showErrorLoading()
-                }
+                setName()
+                setImage()
+                setDescription()
+                setFindUspBtn()
+                setWWW()
+
+                setPhone()
             },{
                 Timber.e(it)
                 viewState.showErrorLoading()

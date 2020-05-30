@@ -1,4 +1,4 @@
-package com.geekbrains.lifehacktest.ui.image
+package com.geekbrains.lifehacktest.framework.ui.image
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide

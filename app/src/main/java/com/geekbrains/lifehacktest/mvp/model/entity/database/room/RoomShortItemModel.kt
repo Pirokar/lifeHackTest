@@ -1,10 +1,8 @@
 package com.geekbrains.lifehacktest.mvp.model.entity.database.room
 
 import androidx.room.Entity
-import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.geekbrains.lifehacktest.mvp.model.entity.DetailedItemModel
-import com.geekbrains.lifehacktest.mvp.model.entity.ShortItemModel
 
 @Entity
 data class RoomShortItemModel(
