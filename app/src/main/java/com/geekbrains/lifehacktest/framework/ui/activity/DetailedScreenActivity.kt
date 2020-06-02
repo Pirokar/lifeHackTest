@@ -5,17 +5,20 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
+import com.geekbrains.App
 import com.geekbrains.lifehacktest.R
 import com.geekbrains.lifehacktest.mvp.model.IIdProvider
 import com.geekbrains.lifehacktest.mvp.presenter.DetailedPresenter
 import com.geekbrains.lifehacktest.mvp.utils.Constants
 import com.geekbrains.lifehacktest.mvp.view.DetailedView
-import com.geekbrains.lifehacktest.framework.ui.image.GlideImageLoader
+import com.geekbrains.lifehacktest.mvp.model.image.IImageLoader
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_detailed.*
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import javax.inject.Inject
 
 class DetailedScreenActivity: MvpAppCompatActivity(), DetailedView, IIdProvider {
     @InjectPresenter
@@ -24,12 +27,13 @@ class DetailedScreenActivity: MvpAppCompatActivity(), DetailedView, IIdProvider 
     @ProvidePresenter
     fun providePresenter() = DetailedPresenter(this, AndroidSchedulers.mainThread())
 
-    private val imageLoader = GlideImageLoader()
+    @Inject lateinit var imageLoader: IImageLoader<ImageView>
 
     //region activity methods
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed)
+        App.appInstance.appComponent.inject(this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

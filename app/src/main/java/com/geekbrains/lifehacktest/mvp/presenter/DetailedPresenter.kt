@@ -1,14 +1,19 @@
 package com.geekbrains.lifehacktest.mvp.presenter
 
+import com.geekbrains.App
 import com.geekbrains.lifehacktest.Constants
 import com.geekbrains.lifehacktest.mvp.model.DetailedModel
 import com.geekbrains.lifehacktest.mvp.model.IIdProvider
-import com.geekbrains.lifehacktest.mvp.model.api.ApiHolder
+import com.geekbrains.lifehacktest.mvp.model.api.IDataSource
+import com.geekbrains.lifehacktest.mvp.model.entity.database.entities_cache.IDetailedItemModelCache
+import com.geekbrains.lifehacktest.mvp.model.entity.database.entities_cache.IShortItemModelCache
+import com.geekbrains.lifehacktest.mvp.model.network.NetworkStatus
 import com.geekbrains.lifehacktest.mvp.model.repo.ModelsRepo
 import com.geekbrains.lifehacktest.mvp.view.DetailedView
 import io.reactivex.rxjava3.core.Scheduler
 import moxy.MvpPresenter
 import timber.log.Timber
+import javax.inject.Inject
 
 class DetailedPresenter(private val idProvider: IIdProvider,
                         private val mainThreadScheduler: Scheduler): MvpPresenter<DetailedView>() {
@@ -27,7 +32,9 @@ class DetailedPresenter(private val idProvider: IIdProvider,
     }
 
     private fun createModelsRepo() {
-        modelsRepo = ModelsRepo(ApiHolder.api)
+        modelsRepo = ModelsRepo().apply {
+            App.appInstance.appComponent.inject(this)
+        }
     }
 
     private fun loadDetails() {

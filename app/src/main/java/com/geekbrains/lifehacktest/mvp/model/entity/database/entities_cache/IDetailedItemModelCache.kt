@@ -4,6 +4,6 @@ import com.geekbrains.lifehacktest.mvp.model.entity.DetailedItemModel
 import com.geekbrains.lifehacktest.mvp.model.entity.database.db_impl.Database
 
 interface IDetailedItemModelCache {
-    fun saveDetailedItemToDb(detailedItem: DetailedItemModel, database: Database)
-    fun getDetailedItemsFromDb(detailedItemId: String, database: Database): DetailedItemModel?
+    fun saveDetailedItemToDb(detailedItem: DetailedItemModel)
+    fun getDetailedItemsFromDb(detailedItemId: String): DetailedItemModel?
 }

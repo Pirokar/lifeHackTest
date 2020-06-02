@@ -4,8 +4,8 @@ import com.geekbrains.lifehacktest.mvp.model.entity.ShortItemModel
 import com.geekbrains.lifehacktest.mvp.model.entity.database.db_impl.Database
 
 interface IShortItemModelCache {
-    fun saveShortItemToDb(shortItem: ShortItemModel, database: Database)
-    fun saveShortItemsToDb(shortItems: Array<ShortItemModel>, database: Database)
-    fun getShortItemFromDb(shortItemId: String, database: Database): ShortItemModel?
-    fun getAllItems(database: Database): Array<ShortItemModel>
+    fun saveShortItemToDb(shortItem: ShortItemModel)
+    fun saveShortItemsToDb(shortItems: Array<ShortItemModel>)
+    fun getShortItemFromDb(shortItemId: String): ShortItemModel?
+    fun getAllItems(): Array<ShortItemModel>
 }

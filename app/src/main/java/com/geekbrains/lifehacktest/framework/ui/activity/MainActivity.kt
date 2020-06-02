@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.geekbrains.App
 import com.geekbrains.lifehacktest.R
 import com.geekbrains.lifehacktest.framework.network.AndroidNetworkStatus
 import com.geekbrains.lifehacktest.mvp.presenter.MainPresenter
@@ -39,7 +40,9 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     //region view methods
     override fun initList() {
         val layoutManager = LinearLayoutManager(baseContext)
-        rvAdapter = ItemsListRVAdapter(presenter.itemsListPresenter)
+        rvAdapter = ItemsListRVAdapter(presenter.itemsListPresenter).apply {
+            App.appInstance.appComponent.inject(this)
+        }
 
         itemsRecyclerView.layoutManager = layoutManager
         itemsRecyclerView.adapter = rvAdapter

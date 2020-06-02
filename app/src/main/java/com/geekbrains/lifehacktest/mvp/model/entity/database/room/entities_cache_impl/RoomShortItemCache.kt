@@ -6,8 +6,8 @@ import com.geekbrains.lifehacktest.mvp.model.entity.database.db_impl.Database
 import com.geekbrains.lifehacktest.mvp.model.entity.database.entities_cache.IShortItemModelCache
 import com.geekbrains.lifehacktest.mvp.model.entity.database.room.RoomShortItemModel
 
-object RoomShortItemCache: IShortItemModelCache {
-    override fun saveShortItemToDb(shortItem: ShortItemModel, database: Database) {
+class RoomShortItemCache(private val database: Database): IShortItemModelCache {
+    override fun saveShortItemToDb(shortItem: ShortItemModel) {
         val roomShortItemModel = database.shortItemDao().getById(shortItem.id)?.apply {
             id = shortItem.id
             name = shortItem.name
@@ -16,7 +16,7 @@ object RoomShortItemCache: IShortItemModelCache {
         database.shortItemDao().insert(roomShortItemModel)
     }
 
-    override fun saveShortItemsToDb(shortItems: Array<ShortItemModel>, database: Database) {
+    override fun saveShortItemsToDb(shortItems: Array<ShortItemModel>) {
         val roomModels = shortItems.map {
             RoomShortItemModel(
                 it.id,
@@ -27,11 +27,11 @@ object RoomShortItemCache: IShortItemModelCache {
         database.shortItemDao().insert(roomModels)
     }
 
-    override fun getShortItemFromDb(shortItemId: String, database: Database): ShortItemModel? {
+    override fun getShortItemFromDb(shortItemId: String): ShortItemModel? {
         return  database.shortItemDao().getById(shortItemId)?.mapToSimpleModel()
     }
 
-    override fun getAllItems(database: Database): Array<ShortItemModel> {
+    override fun getAllItems(): Array<ShortItemModel> {
         return database.shortItemDao().getAll().map {
             val shortItemModel = ShortItemModel()
             shortItemModel.id = it.id

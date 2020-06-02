@@ -5,8 +5,8 @@ import com.geekbrains.lifehacktest.mvp.model.entity.database.db_impl.Database
 import com.geekbrains.lifehacktest.mvp.model.entity.database.entities_cache.IDetailedItemModelCache
 import com.geekbrains.lifehacktest.mvp.model.entity.database.room.RoomDetailedItemModel
 
-object RoomDetailedItemCache: IDetailedItemModelCache {
-    override fun saveDetailedItemToDb(detailedItem: DetailedItemModel, database: Database) {
+class RoomDetailedItemCache(private val database: Database) : IDetailedItemModelCache {
+    override fun saveDetailedItemToDb(detailedItem: DetailedItemModel) {
         val itemToInsert = RoomDetailedItemModel(
             detailedItem.id,
             detailedItem.name,
@@ -20,7 +20,7 @@ object RoomDetailedItemCache: IDetailedItemModelCache {
         database.detailedItemDao().insert(itemToInsert)
     }
 
-    override fun getDetailedItemsFromDb(detailedItemId: String, database: Database): DetailedItemModel? {
+    override fun getDetailedItemsFromDb(detailedItemId: String): DetailedItemModel? {
         return database.detailedItemDao().getById(detailedItemId)?.mapToSimpleModel()
     }
 }

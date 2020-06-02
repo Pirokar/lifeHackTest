@@ -14,28 +14,14 @@ import java.lang.RuntimeException
         RoomShortItemModel::class,
         RoomDetailedItemModel::class
     ],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class Database: RoomDatabase() {
     abstract fun shortItemDao(): ShortItemDao
     abstract fun detailedItemDao(): DetailedItemDao
 
     companion object {
-        private const val DB_NAME = "database.db"
-
-        @Volatile
-        private var instance: Database? = null
-
-        @Synchronized
-        fun getInstance() = instance
-            ?: throw RuntimeException("Database has not been created. Please call create(context)")
-
-        fun create(context: Context) {
-            instance ?: let {
-                instance = Room.databaseBuilder(context, Database::class.java, DB_NAME)
-                    .build()
-            }
-        }
-
+        const val DB_NAME = "database.db"
     }
 }

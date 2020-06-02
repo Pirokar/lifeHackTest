@@ -3,19 +3,25 @@ package com.geekbrains.lifehacktest.framework.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.lifehacktest.R
 import com.geekbrains.lifehacktest.mvp.presenter.list.IItemsListPresenter
 import com.geekbrains.lifehacktest.mvp.view.list.ShortItemView
 import com.geekbrains.lifehacktest.framework.ui.image.GlideImageLoader
+import com.geekbrains.lifehacktest.mvp.model.image.IImageLoader
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_list.view.*
+import javax.inject.Inject
 
 class ItemsListRVAdapter(private val presenter: IItemsListPresenter):
     RecyclerView.Adapter<ItemsListRVAdapter.ViewHolder>() {
 
+    @Inject lateinit var imageLoader: IImageLoader<ImageView>
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false))
+        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false),
+            imageLoader)
 
     override fun getItemCount() = presenter.getCount()
 
@@ -25,9 +31,9 @@ class ItemsListRVAdapter(private val presenter: IItemsListPresenter):
         presenter.bindView(holder)
     }
 
-    class ViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView),
+    class ViewHolder(override val containerView: View, private val imageLoader: IImageLoader<ImageView>):
+        RecyclerView.ViewHolder(containerView),
         LayoutContainer, ShortItemView {
-        private val imageLoader = GlideImageLoader()
 
         override var pos = -1
 
