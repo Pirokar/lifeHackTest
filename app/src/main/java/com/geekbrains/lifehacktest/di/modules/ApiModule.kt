@@ -8,6 +8,7 @@ import com.geekbrains.lifehacktest.mvp.model.api.IDataSource
 import com.geekbrains.lifehacktest.mvp.model.image.IImageLoader
 import com.geekbrains.lifehacktest.mvp.model.network.NetworkStatus
 import com.google.gson.GsonBuilder
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
@@ -15,7 +16,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-@Module
+@Module(includes = [ApiModule.ImageLoader::class])
 class ApiModule {
     @Singleton
     @Provides
@@ -36,8 +37,9 @@ class ApiModule {
         return AndroidNetworkStatus(app)
     }
 
-    @Provides
-    fun imageLoader(): IImageLoader<ImageView> {
-        return GlideImageLoader()
+    @Module
+    abstract class ImageLoader {
+        @Binds
+        abstract fun imageLoader(impl: GlideImageLoader): IImageLoader<ImageView>
     }
 }
